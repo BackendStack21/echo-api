@@ -38,20 +38,17 @@ GET /echo/10/ms 200 - - 10.244 ms
 ...
 ```
 
-# Implementation
+# WebSocket support
+The service will accept WebSocket connections on port 3000, incoming messages will be echoed back to client. 
+
+## Example:
+(Chrome browser example)
 ```js
-const restana = require('restana')
-const morgan = require('morgan')
+ws = new WebSocket('ws://localhost:3000/echo')
+ws.onmessage = (msg) => console.log(msg)
 
-const service = restana()
-service.use(morgan('tiny'))
+ws.send("Hello World")
 
-service.get('/echo/:latency/ms', (req, res) => {
-  const { latency } = req.params
-
-  res.setHeader('x-added-latency-ms', latency)
-  setTimeout(() => res.send(req.headers), latency)
-})
-
-service.start(3000)
+// Incoming message printed in console:
+// MessageEvent {isTrusted: true, data: 'Hello World', origin: 'ws://localhost:3000', lastEventId: '', source: null, …}
 ```
