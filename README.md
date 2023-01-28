@@ -1,9 +1,9 @@
 # Introduction
-Basic *echo* API to help debugging API gateway or proxy solutions.
+*Echo API*, is a Docker-based solution to help debugging client services and API gateway solutions. 
 
 # Usage
 The service exposes the following endpoints:
-- `GET /echo/:latency/ms`: The endpoints respond with the HTTP request headers using the `:latency` parameter value to introduce artificial latency.
+- `GET /echo/:latency/ms`: The endpoints respond with the HTTP request headers using the `:latency` parameter value to introduce simulated latency.
 
 ## Example: 
 ```bash
